@@ -1,0 +1,22 @@
+@use "../../styles/_mixins" as *;
+.result{
+    padding: 1rem 0.89rem;
+    background-color: rgba(0,0,0,0.4);
+    width: 80%;
+    margin: 0 1rem;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    @include tablet {
+        width: 40%;
+    }
+    @include desktop {
+    }
+    &__item:hover {
+        color: darkorange;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}

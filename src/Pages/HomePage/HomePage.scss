@@ -1,13 +1,18 @@
 @use "../../styles/_mixins" as *;
+// Hero Section
 .hero {
     background-image: url("../../assets/images/hero4.jpg");
     width: 100%;
-    padding: 7rem 0;
+    height: 90vh;
     background-position: center;
     background-size: cover;
-    box-shadow: inset 0 0 0 1000px rgba(50, 50, 50, 0.6);    
+    box-shadow: inset 0 0 0 1000px rgba(50, 50, 50, 0.6);  
+    display:flex;
+    flex-direction: column;
+    justify-content: center;  
     @include tablet{
         padding: 10rem 2rem;
+        height: auto;
     }
     @include desktop {
         padding: 13rem 8rem;
@@ -31,16 +36,169 @@
     &__input {
         background-color: transparent;
         border: solid 1.5px white;
-        border-radius: 0.8rem;
         width: 80%;
         padding: 0.5rem 0.8rem;
         color: white;
-        margin: 1rem 1rem;
+        margin: 1rem 1rem 0 1rem;
+        outline: none;
         &::placeholder {
             color: white;
         }
+        &:focus {
+            border: solid 2px darkorange;
+        }
         @include tablet {
             width: 40%;
+        }
+    }
+}
+// Service
+.service {
+    padding: 1rem 1rem 0 1rem;
+    @include tablet{
+        padding: 1.5rem 2rem 0 2rem;
+    }
+    @include desktop {
+        padding: 2rem 8rem 0 8rem;
+    }
+    &__title {
+        @include section-title;
+    }
+    &__wrapper {
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        @include tablet{
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 1.2rem;
+        }
+        @include desktop {
+            padding: 2rem 0;
+        }
+    }
+}
+
+.item1, .item2, .item3, .item4 {
+    background-size: cover;
+    padding: 7rem 1rem 1rem 1rem;
+    border-radius: 0.3rem;
+    box-shadow: inset 0 0 0 1000px rgba(50, 50, 50, 0.5);
+    margin-bottom: 0.8rem;
+    @include tablet {
+        width: 44%;
+        margin-bottom: none;
+    }
+    @include desktop{
+        width: 20%;
+    }
+}
+.item__title {
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+}
+.item1 {
+    background-image: url("../../assets/images/cost.jpg");
+}
+.item2 {
+    background-image: url("../../assets/images/transportation.jpg");
+}
+.item3 {
+    background-image: url("../../assets/images/weather.jpg");
+}
+.item4 {
+    background-image: url("../../assets/images/airquality.jpg");
+}
+// About
+.about {
+    padding: 1rem 1rem 2rem 1rem;
+    @include tablet {
+        padding: 1.5rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem
+    }
+    @include desktop {
+        padding: 2rem 8rem;
+    }
+    &__title {
+        width:fit-content;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color:black;
+        background-color: white;
+        @include tablet {
+            font-size: 1rem;
+        }
+        @include desktop {
+            font-size: 1.2rem
+        }
+    }
+    &__img {
+        padding: 1rem;
+        background-image: url("../../assets/images/about.jpg");
+        height: 300px;
+        background-size: cover;
+        box-shadow: inset 0 0 0 1000px rgba(50, 50, 50, 0.2);
+        @include tablet {
+            width: 600px;
+        }
+    }
+    &__content {
+        padding: 1rem 0 0 0;
+        &__para {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            line-height: 1.3rem;
+        }
+    }
+}
+// Countries Section
+.countries {
+    padding: 1rem;
+    @include tablet {
+        padding: 1.5rem 2rem;
+    }
+    @include desktop{
+        padding: 2rem 8rem;
+    }
+    &__title {
+        @include section-title;
+    }
+    &__wrapper {
+        padding-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        @include tablet{
+            flex-direction: row;
+        }
+    }
+    &__header {
+        @include tablet{
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+    }
+    &__btn {
+        background-color:darkgray;
+        letter-spacing: 0.07rem;
+        color: white;
+        padding: 0.2rem 0.4rem;
+        border: none;
+        border-radius: 0.1rem;
+        margin-top: 0.5rem;
+        &:hover {
+            background-color: orangered;
+            transition: all 0.5s;
+        }
+        @include tablet{
+            margin-top: 0;
         }
     }
 }

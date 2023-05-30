@@ -9,3 +9,13 @@
         @content;
     }
 }
+// Element
+@mixin section-title {
+    font-size: 1.2rem;
+    @include tablet {
+        font-size: 1.3rem;
+    }
+    @include desktop {
+        font-size: 1.5rem;
+    }
+}

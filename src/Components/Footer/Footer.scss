@@ -1,0 +1,33 @@
+@use "../../styles/_mixins" as *;
+
+.footer {
+    background-color: #222222;
+    padding: 1.5rem 1rem;    
+    margin-top: 2rem;
+    @include tablet {
+        display: flex;
+        padding: 1.5rem 2rem;
+        justify-content: space-between;
+        align-items: center;
+    }
+    @include desktop {
+        padding: 1.5rem 8rem;
+    }
+    &__title {
+        color: white;
+        font-weight: 500;
+        font-size: 1rem;
+        @include tablet {
+            font-size: 1.5rem;
+        }
+    }
+    &__text {
+        color: white;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        color: darkgrey;
+        @include tablet {
+            margin-top: 0;
+        }
+    }
+}

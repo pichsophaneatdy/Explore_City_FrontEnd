@@ -53,8 +53,12 @@ header {
         @include tablet {
             padding:0;
             margin:0;
+            gap: 1.5rem;
             align-items: end;
             flex-direction: row;
+        }
+        @include desktop {
+            gap: 2rem;
         }
     }
     &__li {
