@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import "./HomePage.scss";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+// utils 
+import getFullCountryName from '../../utils/getFullCountryName';
 // Components
 import CountryCard from '../../Components/CountryCard/CountryCard';
 import SearchResult from '../../Components/SearchResult/SearchResult';
@@ -33,7 +35,8 @@ const HomePage = () => {
     // Handle onClick for city search 
     const handleCityClick = (city) => {
         console.log(city);
-        navigate(`/city/${city.name}`);
+        const fullCountryName = getFullCountryName(city.country);
+        navigate(`/city/${city.name}/${fullCountryName}/${city.lat}/${city.lon}`);
     }
     return (
         <section className="home">

@@ -1,0 +1,30 @@
+@use "../../styles/_mixins" as *;
+
+.accordion{
+    padding: 1rem;
+    background-color: #F9F9F9;
+    border-radius: 0.4rem;
+
+    &__text{
+        color: #393939;
+        font-weight: 500;
+        font-size: 0.9rem;
+        &:hover {
+            color:dodgerblue;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+    }
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        padding: 0.5rem 0.5rem;
+        
+    }
+    &__btn {
+        width: 17px;
+        height: 17px;
+        cursor: pointer;
+    }
+}

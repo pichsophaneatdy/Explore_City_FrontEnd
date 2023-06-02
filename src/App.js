@@ -14,7 +14,7 @@ const App = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<HomePage />}/>
-                <Route path="/city/:cityname" element={<CityPage />}/>
+                <Route path="/city/:cityname/:countryname/:lat/:lng" element={<CityPage />}/>
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <Footer />
