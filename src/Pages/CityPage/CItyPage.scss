@@ -12,10 +12,10 @@
     object-fit: cover;
     filter:brightness(0.7);
     @include tablet {
-        height: 60vh;
+        height: 70vh;
     }
     @include desktop{
-        height: 70vh;
+        height: 80vh;
     }
     }  
     &__hero__content {
@@ -31,9 +31,9 @@
     } 
     &__hero__title {
         color: white;
+        line-height: 2rem;
         font-size: 1.8rem;
         margin: 0 1rem;
-        line-height: 1.5rem;
 
         @include tablet {
             font-size: 2.8rem;
@@ -120,4 +120,9 @@
     @include tablet {
         margin-bottom: 2rem;
     }
+}
+.unavailable__text {
+    padding-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: gray;
 }

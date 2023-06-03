@@ -8,6 +8,7 @@ import Loader from '../../Components/Loader/Loader';
 import MenuAccordion from '../../Components/MenuAccordion/MenuAccordion';
 import Weather from "../../Components/Weather/Weather";
 import Table from '../../Components/Table/Table';
+import AirQuality from '../../Components/AirQuality/AirQuality';
 // Data 
 import Prices from "../../data/prices";
 import Categories from "../../data/categories";
@@ -23,10 +24,12 @@ const CityPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     // States for Categories Section
     const [categories, setCategories] = useState(Categories);
-    const [prices, setPrices] = useState([]);
+    const [prices, setPrices] = useState(Prices);
     const [currentCategory, setCurrentCategory] = useState({id:1});
     // States for weather 
-    const [weather, setWeather] = useState({});
+    const [currentWeather, setCurrentWeather] = useState({});
+    // States for air quality
+    const [airQuality, setAirQuality] = useState()
     // Fetch Background Image
     useEffect(() => {
         fetchImage();
@@ -48,23 +51,35 @@ const CityPage = () => {
         } 
     }
     // Fetch Categories
-    useEffect(() => {
-        axios.get("http://localhost:8080/api/categories")
-            .then((response) => setCategories(response.data))
-            .catch((error) => console.log(error))
-    }, [])
-        useEffect(() => {
-            axios.get(`http://localhost:8080/api/categories/${currentCategory.id}`)
-                .then((response) => setPrices(response.data))
-                .catch((error) => console.log(error))
-        }, [currentCategory]);
+    // useEffect(() => {
+    //     axios.get("http://localhost:8080/api/categories")
+    //         .then((response) => setCategories(response.data))
+    //         .catch((error) => console.log(error))
+    // }, [])
+    //     useEffect(() => {
+    //         axios.get(`http://localhost:8080/api/categories/${currentCategory.id}`)
+    //             .then((response) => setPrices(response.data))
+    //             .catch((error) => console.log(error))
+    //     }, [currentCategory]);
     
 
     // Fetch Weather 
     useEffect(() => {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=2c2dc9612e25028339c2e6cb127599bf`)
-            .then((response) => console.log(response.data))
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_OPENWEATHER}`)
+            .then((response) => {setCurrentWeather(response.data);})
             .catch((error)=>console.log(error))
+    }, [])
+    // Fetch Air Quality 
+    const option = {
+        method: 'GET',
+        url: 'https://api.ambeedata.com/latest/by-lat-lng',
+        params: {lat: lat, lng: lng},
+        headers: {'x-api-key': process.env.REACT_APP_AMBEE, 'Content-type': 'application/json'}
+    };
+    useEffect(() => {
+        axios.request(option)
+            .then((response) => {setAirQuality(response.data.stations[0]);})
+            .catch((error) => console.log(error));
     }, [])
     return (
         <div className="city">
@@ -99,14 +114,18 @@ const CityPage = () => {
                         <h2 className="content__title">Weather</h2>
                     </div>
                     <div className="weather__content">
-                        <Weather />
+                        {currentWeather.id ? <Weather cityName={cityname} currentWeather={currentWeather}/> : <Loader />}
                     </div>
                 </div>
                 {/* Air Quality */}
-                <div className="content__heading">
+                <div className="air">
+                    <div className="content__heading">
                         <img className="content__icon" src={AirQualityIcon} alt="Cost"/>
                         <h2 className="content__title">Air Quality</h2>
                     </div>
+                        {airQuality?.AQI ? <AirQuality airQuality={airQuality}/> : <p className="unavailable__text">No available data</p>}
+                </div>
+                
                 {/* Transportation */}
                 <div className="content__heading">
                         <img className="content__icon" src={Transportation} alt="Cost"/>

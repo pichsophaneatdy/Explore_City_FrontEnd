@@ -1,1 +1,101 @@
 @use "../../styles/_mixins" as *;
+
+.weather {
+    &__component {
+        color: white;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        background-image: url("../../assets/weather-icons/ian-dooley-DuBNA1QMpPA-unsplash.jpg");
+        background-size: cover;
+        background-position: center;
+        box-shadow: inset 0 0 0 1000px rgba(50, 50, 50, 0.5);
+    }
+    &__location {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        background-color: white;
+        padding: 0.2rem 0.7rem;
+        width: fit-content;
+        border-radius: 0.4rem;
+    }
+    &__locationIcon {
+        height: 12px;
+        margin-right: 0.2rem;
+    }
+    &__locationText {
+        font-size: 0.8rem;
+        color: brown;
+        font-weight: 600;
+    }
+    &__title {
+        @include section-title;
+    }
+    &__info {
+
+    }
+    &__icon {
+        width: 50px;
+        margin-bottom: 0.5rem;
+    }
+    &__text {
+        font-size: 0.8rem;
+    }
+    &__main-temp {
+        font-size: 3rem;
+    }
+    &__degree {
+        height: 18px;
+    }
+    &__min-text {
+        font-size: 0.8rem;
+        background-color: white;
+        color: black;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.2rem;
+        font-weight: 500;
+    }
+    &__min-max {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.7rem;
+    }
+    &__col2 {
+        display: flex;
+        gap: 1.5rem;
+        align-items: start;
+    }
+    &__degree2 {
+        height: 13px;
+    }
+    &__col1 {
+        margin-top: 1rem;
+        display: flex;
+        gap:0.5rem;
+    }
+}
+.box {
+    font-weight: 500;
+    font-size: 0.7rem;
+    color: #253342;
+    width: fit-content;
+    padding: 0.4rem 0.7rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    background-color: transparent;
+    border: solid 1px white;
+    color: white;
+    &__text {
+        @include tablet {
+            display: flex;
+            gap: 0.7rem;
+        }
+    }
+    &__title {
+        margin-bottom: 0.4rem;
+        @include tablet {
+            margin-bottom: 0;
+        }
+    }
+}

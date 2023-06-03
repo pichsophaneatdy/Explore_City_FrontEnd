@@ -12,10 +12,10 @@ const Table = ({items}) => {
             {items.map((item) => {
                 return (
                     <tr className="table__row">
-                        <td className="table__col1">{item.item_name}</td>
-                        <td className="table__col">$ {item.usd.min}</td>
-                        <td className="table__col">$ {item.usd.avg}</td>
-                        <td className="table__col">$ {item.usd.max}</td>
+                        <td className="table__col1">{item?.item_name}</td>
+                        <td className="table__col">$ {item?.usd.min}</td>
+                        <td className="table__col">$ {item?.usd.avg}</td>
+                        <td className="table__col">$ {item?.usd.max}</td>
                     </tr>
                 )
             })}

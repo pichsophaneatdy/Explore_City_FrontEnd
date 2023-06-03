@@ -1,0 +1,25 @@
+@use "../../styles/_mixins" as *;
+
+.airQuality {
+    display: flex;
+    align-items: center;
+    background-color: brown;
+    margin-bottom: 1.5rem;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    justify-content: space-between;
+    max-width: 400px;
+    &__index {
+        font-size: 2rem;
+    }
+    &__measurement {
+        font-size: 0.8rem;
+    }
+    &__concentration {
+        font-size: 0.7rem;
+    }
+    &__number {
+        text-align: end;
+    }
+}

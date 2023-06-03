@@ -28,15 +28,15 @@ const HomePage = () => {
         axios.get(url)
             .then((response) => {
                 setCityResult(response.data);
-                console.log(response.data);
             })
             .catch((error) => console.log(error));
     }, [city])
     // Handle onClick for city search 
     const handleCityClick = (city) => {
-        console.log(city);
+        const lat = city.lat.toFixed(2);
+        const lng = city.lon.toFixed(2);
         const fullCountryName = getFullCountryName(city.country);
-        navigate(`/city/${city.name}/${fullCountryName}/${city.lat}/${city.lon}`);
+        navigate(`/city/${city.name}/${fullCountryName}/${lat}/${lng}`);
     }
     return (
         <section className="home">

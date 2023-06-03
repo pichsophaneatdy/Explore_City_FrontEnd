@@ -68,10 +68,7 @@ header {
         text-decoration: none;
         color: #4f4f4f;
         font-weight: 550;
-        font-size: 0.9rem;
-        @include tablet {
-            font-size: 1rem;
-        }
+        font-size: 0.8rem;
         &:hover {
             color: black;
             transition: all 0.5s;
