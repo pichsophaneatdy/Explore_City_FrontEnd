@@ -1,7 +1,6 @@
 import React from 'react'
 import "./AirQuality.scss";
 const AirQuality = ({airQuality}) => {
-    console.log(airQuality);
     const {pollutant, concentration, category} = airQuality.aqiInfo;
     return (
         <div className="airQuality">

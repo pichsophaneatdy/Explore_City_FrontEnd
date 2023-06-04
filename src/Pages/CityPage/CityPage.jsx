@@ -9,6 +9,9 @@ import MenuAccordion from '../../Components/MenuAccordion/MenuAccordion';
 import Weather from "../../Components/Weather/Weather";
 import Table from '../../Components/Table/Table';
 import AirQuality from '../../Components/AirQuality/AirQuality';
+import Map from "../../Components/Map/Map";
+// Function 
+import {getSingleImage, getImages} from "../../API/getImagesUnsplash";
 // Data 
 import Prices from "../../data/prices";
 import Categories from "../../data/categories";
@@ -32,24 +35,20 @@ const CityPage = () => {
     const [airQuality, setAirQuality] = useState()
     // Fetch Background Image
     useEffect(() => {
-        fetchImage();
-    }, [])
-    const fetchImage = async () => {
-        try{
+        const fetchData = async () => {
             setIsLoading(true);
-            const url = `https://api.unsplash.com/photos/random/?query=${cityname}&orientation=landscape&count=1`;
-            const response = await axios.get(url, 
-                            {
-                                headers: {
-                                    "Accept-Version": "v1",
-                                    "Authorization": `Client-ID ${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
-                                }
-                            });
-            setBackgroundImg(response.data[0].urls.full);
-        } catch(error) {
-            console.log(error);
-        } 
-    }
+            const backgroundImg =  await getSingleImage(cityname);
+            setBackgroundImg(backgroundImg);
+        }
+        fetchData();
+    }, [])
+    useEffect(() => {
+        const fetchData = async() => {
+            const images = await getImages(cityname);
+            console.log(images);
+        }
+        fetchData();
+    }, [])
     // Fetch Categories
     // useEffect(() => {
     //     axios.get("http://localhost:8080/api/categories")
@@ -81,13 +80,22 @@ const CityPage = () => {
             .then((response) => {setAirQuality(response.data.stations[0]);})
             .catch((error) => console.log(error));
     }, [])
+    // Handler
+    const handleChangeImage = () => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            const newBackgroundImg = await getSingleImage(cityname);
+            setBackgroundImg(newBackgroundImg);
+        }
+        fetchData();
+    }
     return (
         <div className="city">
             <section className="city__hero">
                 <img onLoad={()=>setIsLoading(false)} className="city__hero__img" src={backgroundImg ? backgroundImg : defaultBG} alt={cityname} />
                 <div className="city__hero__content">
                     <h1 className="city__hero__title">Let's discover {cityname}</h1>
-                    <button onClick={() => fetchImage()} className="city__hero__btn">Get a new image</button>
+                    <button onClick={() => handleChangeImage()} className="city__hero__btn">Get a new image</button>
                     {isLoading && <Loader />}
                 </div>  
             </section>
@@ -127,10 +135,14 @@ const CityPage = () => {
                 </div>
                 
                 {/* Transportation */}
-                <div className="content__heading">
+                <div className="map-section">
+                    <div className="content__heading">
                         <img className="content__icon" src={Transportation} alt="Cost"/>
-                        <h2 className="content__title">Transportation</h2>
+                        <h2 className="content__title">Explore the city</h2>
                     </div>
+                    <Map lat={lat} lng={lng} />
+                </div>
+                
             </section>
         </div>
     )

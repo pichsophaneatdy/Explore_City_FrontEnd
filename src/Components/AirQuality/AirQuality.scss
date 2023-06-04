@@ -10,6 +10,9 @@
     border-radius: 0.2rem;
     justify-content: space-between;
     max-width: 400px;
+    @include tablet {
+        margin-bottom: 2rem;
+    }
     &__index {
         font-size: 2rem;
     }
