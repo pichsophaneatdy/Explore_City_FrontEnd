@@ -10,6 +10,8 @@ import Weather from "../../Components/Weather/Weather";
 import Table from '../../Components/Table/Table';
 import AirQuality from '../../Components/AirQuality/AirQuality';
 import Map from "../../Components/Map/Map";
+import Gallery from '../../Components/Gallery/Gallery';
+import Comment from '../../Components/Comment/Comment';
 // Function 
 import {getSingleImage, getImages} from "../../API/getImagesUnsplash";
 // Data 
@@ -20,7 +22,9 @@ import CostIcon from "../../assets/icons/costIcon.png";
 import WeatherIcon from "../../assets/icons/weatherIcon.png";
 import AirQualityIcon from "../../assets/icons/airQualityIcon.png";
 import Transportation from "../../assets/icons/transportationIcon.png";
+import GalleryIcon from "../../assets/icons/gallery.png";
 import prices from '../../data/prices';
+import CommentIcon from "../../assets/icons/comments.png";
 const CityPage = () => {
     const {cityname, countryname, lat, lng} = useParams();
     const [backgroundImg, setBackgroundImg] = useState("");
@@ -33,6 +37,11 @@ const CityPage = () => {
     const [currentWeather, setCurrentWeather] = useState({});
     // States for air quality
     const [airQuality, setAirQuality] = useState()
+    // States for Gallery Images
+    const [images , setImages] = useState([]);
+    // State for comment section
+    const [ratings, setRatings] = useState(0);
+    const [hover,setHover] = useState(0);
     // Fetch Background Image
     useEffect(() => {
         const fetchData = async () => {
@@ -42,12 +51,13 @@ const CityPage = () => {
         }
         fetchData();
     }, [])
+    // Fetch Images for Gallery Section
+    const fetchImages = async() => {
+        const images = await getImages(cityname);
+        setImages(images);
+    }
     useEffect(() => {
-        const fetchData = async() => {
-            const images = await getImages(cityname);
-            console.log(images);
-        }
-        fetchData();
+        fetchImages();
     }, [])
     // Fetch Categories
     // useEffect(() => {
@@ -142,7 +152,25 @@ const CityPage = () => {
                     </div>
                     <Map lat={lat} lng={lng} />
                 </div>
-                
+                {/* Gallery */}
+                <div className="gallery">
+                    <div className="content__header gallery__heading">
+                        <div className="content__heading">
+                            <img className="content__icon" src={GalleryIcon} alt="Gallery"/>
+                            <h2 className="content__title">Gallery</h2>
+                        </div>
+                        <button onClick={()=>fetchImages()} className="countries__btn">Get new images</button>
+                    </div>
+                    {images?.length > 0 && <Gallery images={images} />}
+                </div>
+                {/* Comment Section */}
+                <div className="comment-section">
+                    <div className="content__heading">
+                        <img className="content__icon" src={CommentIcon} alt="Cost"/>
+                        <h2 className="content__title">Let's leave a comment</h2>
+                    </div>
+                    <Comment ratings={ratings} setRatings={setRatings} hover={hover} setHover={setHover} cityname={cityname} />
+                </div>
             </section>
         </div>
     )

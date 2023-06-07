@@ -8,13 +8,17 @@
     color: white;
     padding: 1rem;
     border-radius: 0.2rem;
+    gap: 1rem;
     justify-content: space-between;
-    max-width: 400px;
+    max-width: 450px;
     @include tablet {
         margin-bottom: 2rem;
     }
     &__index {
-        font-size: 2rem;
+        font-size: 1rem;
+        @include tablet {
+            font-size: 2rem;
+        }
     }
     &__measurement {
         font-size: 0.8rem;
@@ -24,5 +28,11 @@
     }
     &__number {
         text-align: end;
+    }
+    &__category{
+        font-size: 1rem;
+        @include tablet {
+            font-size: 1.3rem;
+        }
     }
 }

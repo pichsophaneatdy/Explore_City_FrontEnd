@@ -126,3 +126,14 @@
     font-size: 0.9rem;
     color: gray;
 }
+.gallery {
+    margin: 1.5rem 0;
+    @include tablet {
+        margin: 2rem 0;
+    }
+    &__heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+    }
+}

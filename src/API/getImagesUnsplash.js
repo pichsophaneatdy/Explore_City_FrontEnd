@@ -16,7 +16,7 @@ export const getSingleImage = async (cityname) => {
 }
 export const getImages = async (cityname) => {
     try {
-        const url = `https://api.unsplash.com/photos/random/?query=${cityname}&count=10`;
+        const url = `https://api.unsplash.com/photos/random/?query=${cityname}&count=9`;
         const response = await axios.get(url, 
                         {
                             headers: {

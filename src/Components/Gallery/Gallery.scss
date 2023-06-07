@@ -1,0 +1,25 @@
+@use "../../styles/_mixins" as *;
+
+.gallery {
+    &__wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        @include tablet{
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+    }
+    &__image {
+        width: 100%;
+        object-fit: cover;
+        height: 300px;
+        @include tablet {
+            width: 31%;
+            height: 200px;
+        }
+        @include desktop {
+            width:31.5%;
+        }
+    }
+}
