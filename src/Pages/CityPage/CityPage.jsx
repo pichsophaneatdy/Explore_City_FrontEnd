@@ -41,7 +41,12 @@ const CityPage = () => {
     const [images , setImages] = useState([]);
     // State for comment section
     const [ratings, setRatings] = useState(0);
+    const [nickname, setNickname] = useState("");
+    const [location, setLocation] = useState("");
+    const [comment, setComment] = useState("");
     const [hover,setHover] = useState(0);
+    const [errMsg, setErrMsg] = useState({})
+    const [isSuccess, setIsSucess] = useState(false);
     // Fetch Background Image
     useEffect(() => {
         const fetchData = async () => {
@@ -98,6 +103,41 @@ const CityPage = () => {
             setBackgroundImg(newBackgroundImg);
         }
         fetchData();
+    }
+    const handleSubmit = async ({nickname, location, comment}, e) => {
+        e.preventDefault();
+        // Form Validation 
+        const validName = nickname.length > 2;
+        const validLocation = location.length > 2;
+        const validComment = comment.length > 10;
+        // Error
+        if(!validName || !validLocation || !validComment) {
+            let errorMessage = {};
+            if(!validName) {
+                errorMessage.nickname = "Please provide a correct nickname (Must be at least 3 characters)";
+            }
+            if(!validLocation){
+                errorMessage.location = "Please provide a correct location (Must be at least 3 characters)";
+            }
+            if(!validComment){
+                errorMessage.comment = "Please provide a correct comment (Must be at least 10 characters)";          
+            }
+            setErrMsg(errorMessage);
+            return;
+        }
+        // Successful
+        setErrMsg({});
+        const newComment = {city:cityname,country:countryname, lat, lng, rating: ratings, nickname, location, comment};
+        axios.put("http://localhost:8080/api/comment",newComment)
+            .then((response) => {
+                setIsSucess(true);
+                setTimeout(() => setIsSucess(false), 5000);
+            })
+            .catch((error) => console.log(error));
+        setNickname("");
+        setLocation("");
+        setRatings(0);
+        setComment("");
     }
     return (
         <div className="city">
@@ -169,7 +209,22 @@ const CityPage = () => {
                         <img className="content__icon" src={CommentIcon} alt="Cost"/>
                         <h2 className="content__title">Let's leave a comment</h2>
                     </div>
-                    <Comment ratings={ratings} setRatings={setRatings} hover={hover} setHover={setHover} cityname={cityname} />
+                    <Comment 
+                        errMsg={errMsg} 
+                        handleSubmit={handleSubmit} 
+                        ratings={ratings} 
+                        setRatings={setRatings} 
+                        hover={hover} 
+                        setHover={setHover} 
+                        cityname={cityname}
+                        nickname={nickname}
+                        setNickname={setNickname}
+                        location={location}
+                        setLocation={setLocation}
+                        comment={comment}
+                        setComment={setComment}
+                        isSuccess={isSuccess}
+                    />
                 </div>
             </section>
         </div>

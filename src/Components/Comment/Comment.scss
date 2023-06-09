@@ -94,6 +94,21 @@
             transition: all 0.4s;
         }
     }
+    &__error {
+        font-size: 0.8rem;
+        color: red;
+        font-weight: 500;
+
+        margin-top: 0.5rem;
+    }
+    &__success {
+        font-size: 0.8rem;
+        background-color: rgba(21, 132, 99, 0.07);
+        padding: 0.5rem 1rem;
+        border-radius: 0.2rem;
+        color:#158463;
+        margin-bottom: 0.5rem;
+    }
 }
 .rating {
     font-size: 0;;
