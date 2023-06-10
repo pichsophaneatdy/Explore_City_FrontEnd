@@ -12,6 +12,7 @@ import AirQuality from '../../Components/AirQuality/AirQuality';
 import Map from "../../Components/Map/Map";
 import Gallery from '../../Components/Gallery/Gallery';
 import Comment from '../../Components/Comment/Comment';
+import SingleComment from '../../Components/SingleComment/SingleComment';
 // Function 
 import {getSingleImage, getImages} from "../../API/getImagesUnsplash";
 // Data 
@@ -25,6 +26,7 @@ import Transportation from "../../assets/icons/transportationIcon.png";
 import GalleryIcon from "../../assets/icons/gallery.png";
 import prices from '../../data/prices';
 import CommentIcon from "../../assets/icons/comments.png";
+import CommentsIcon from "../../assets/icons/conversation.png";
 const CityPage = () => {
     const {cityname, countryname, lat, lng} = useParams();
     const [backgroundImg, setBackgroundImg] = useState("");
@@ -47,6 +49,8 @@ const CityPage = () => {
     const [hover,setHover] = useState(0);
     const [errMsg, setErrMsg] = useState({})
     const [isSuccess, setIsSucess] = useState(false);
+    // State Display comments section
+    const [comments, setComments] = useState([]);
     // Fetch Background Image
     useEffect(() => {
         const fetchData = async () => {
@@ -95,6 +99,17 @@ const CityPage = () => {
             .then((response) => {setAirQuality(response.data.stations[0]);})
             .catch((error) => console.log(error));
     }, [])
+    // Fetch comments for the city
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/comment/${lat}/${lng}`)
+            .then((response)=>setComments(response.data))
+            .catch((error) => console.log(error))
+    }, [])
+    const getComments = () => {
+        axios.get(`http://localhost:8080/api/comment/${lat}/${lng}`)
+            .then((response)=>setComments(response.data))
+            .catch((error) => console.log(error))
+    }
     // Handler
     const handleChangeImage = () => {
         const fetchData = async () => {
@@ -132,6 +147,9 @@ const CityPage = () => {
             .then((response) => {
                 setIsSucess(true);
                 setTimeout(() => setIsSucess(false), 5000);
+            })
+            .then(() => {
+                getComments();
             })
             .catch((error) => console.log(error));
         setNickname("");
@@ -224,7 +242,24 @@ const CityPage = () => {
                         comment={comment}
                         setComment={setComment}
                         isSuccess={isSuccess}
+                        getComments={getComments}
                     />
+                </div>
+                {/* Display Previous Comment */}
+                <div className="display-comment-section">
+                    <div className="content__heading">
+                        <img className="content__icon" src={CommentsIcon} alt="Comment"/>
+                        <h2 className="content__title">What people say about {cityname}</h2>
+                    </div>
+                    {
+                        comments.length > 0 ? (
+                            comments.map((singleComment) => {
+                                return <SingleComment key={singleComment.id} comment={singleComment}/>
+                            })
+                        ) : (
+                            <p>No comments</p>
+                        )
+                    }
                 </div>
             </section>
         </div>

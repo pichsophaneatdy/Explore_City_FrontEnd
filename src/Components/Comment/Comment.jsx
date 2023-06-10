@@ -4,7 +4,7 @@ const Comment = ({
         cityname, nickname, setNickname,
         ratings, location, setLocation,
         setRatings, comment, setComment,
-        hover, setHover, handleSubmit, 
+        hover, setHover, handleSubmit,
         isSuccess,errMsg}) => {
     return (
         <div className="comment">
@@ -15,7 +15,7 @@ const Comment = ({
             {/* Form */}
             <form className="comment__form">
                 {/* Success Message */}
-                {isSuccess && <p className="form__success">Successfully uploaded the comment</p>}
+                {isSuccess && <p className="for">Successfully uploaded the comment</p>}
                 <div className="form__control">
                     <label htmlFor="nickname" className="form__label">Nickname</label>
                     <input value={nickname} onChange={(e)=>setNickname(e.target.value)} id="nickname" type="text" className="form__input" />
