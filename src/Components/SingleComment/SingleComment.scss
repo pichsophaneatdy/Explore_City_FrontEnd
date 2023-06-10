@@ -1,0 +1,49 @@
+.avatar {
+    width: 30px;
+}
+.singleComment {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0;
+    padding: 0.8rem;
+    &__col1 {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.4rem;
+    }
+    &__col2{
+        width: 100%;
+    }
+    &__dot {
+        width: 5px;
+        height: 5px;
+        background-color:lightgreen;
+        border-radius: 50%;
+        margin: 0 0.5rem 0 1rem;
+    }
+    &__name {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    &__location {
+        color: gray;
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+    &__comment {
+        border: solid 1.5px silver;
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        font-size: 0.8rem;
+        color:darkslategrey;
+        font-weight: 500;
+    }
+    &__rating {
+        display: flex;
+        margin-bottom: 0.5rem;
+    }
+    &__star {
+        width: 10px;
+        margin-right: 0.1rem;
+    }
+}

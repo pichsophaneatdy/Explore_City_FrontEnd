@@ -252,12 +252,12 @@ const CityPage = () => {
                         <h2 className="content__title">What people say about {cityname}</h2>
                     </div>
                     {
-                        comments.length > 0 ? (
-                            comments.map((singleComment) => {
-                                return <SingleComment key={singleComment.id} comment={singleComment}/>
+                        comments && comments.length > 0 ? (
+                            comments?.map((singleComment) => {
+                                return <SingleComment key={singleComment._id} singleComment={singleComment}/>
                             })
                         ) : (
-                            <p>No comments</p>
+                            <p className="city__no-comment">No comments</p>
                         )
                     }
                 </div>
