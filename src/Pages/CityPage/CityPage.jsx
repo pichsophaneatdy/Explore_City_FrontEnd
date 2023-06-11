@@ -13,6 +13,7 @@ import Map from "../../Components/Map/Map";
 import Gallery from '../../Components/Gallery/Gallery';
 import Comment from '../../Components/Comment/Comment';
 import SingleComment from '../../Components/SingleComment/SingleComment';
+import AttractionsList from '../../Components/AttractionsList/AttractionsList';
 // Function 
 import {getSingleImage, getImages} from "../../API/getImagesUnsplash";
 // Data 
@@ -27,6 +28,10 @@ import GalleryIcon from "../../assets/icons/gallery.png";
 import prices from '../../data/prices';
 import CommentIcon from "../../assets/icons/comments.png";
 import CommentsIcon from "../../assets/icons/conversation.png";
+import MapIcon from "../../assets/icons/map.png";
+// API
+import attractionAPI from "../../API/getAttractions";
+// End
 const CityPage = () => {
     const {cityname, countryname, lat, lng} = useParams();
     const [backgroundImg, setBackgroundImg] = useState("");
@@ -51,6 +56,8 @@ const CityPage = () => {
     const [isSuccess, setIsSucess] = useState(false);
     // State Display comments section
     const [comments, setComments] = useState([]);
+    // State for attraction section
+    const [attractions, setAttractions] = useState([]);
     // Fetch Background Image
     useEffect(() => {
         const fetchData = async () => {
@@ -110,6 +117,15 @@ const CityPage = () => {
             .then((response)=>setComments(response.data))
             .catch((error) => console.log(error))
     }
+    // Fetch Tourist Attraction
+    useEffect(() => {
+        axios.get(attractionAPI.getAttractionsList(lat, lng))
+            .then((response) => {
+                setAttractions(response.data.features);
+                console.log(response.data.features)
+            })
+            .catch((error) => console.log(error));
+    }, [])
     // Handler
     const handleChangeImage = () => {
         const fetchData = async () => {
@@ -209,6 +225,14 @@ const CityPage = () => {
                         <h2 className="content__title">Explore the city</h2>
                     </div>
                     <Map lat={lat} lng={lng} />
+                </div>
+                {/* Tourist Attractions */}
+                <div className="attractions-section">
+                    <div className="content__heading">
+                        <img className="content__icon" src={MapIcon} alt="Cost"/>
+                        <h2 className="content__title">Top Attractions</h2>
+                    </div>
+                    <AttractionsList list={attractions}/>
                 </div>
                 {/* Gallery */}
                 <div className="gallery">

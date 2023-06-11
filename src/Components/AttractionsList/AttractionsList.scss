@@ -1,0 +1,60 @@
+@use "../../styles/_mixins" as *;
+
+.attractions {
+    padding-top: 1rem;
+    @include tablet {
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        padding-top: 1.5rem;
+    }
+    @include desktop{
+        gap: 2rem;
+        padding-top: 2.5rem;
+    }
+}
+.attraction {
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    align-items: start;
+    margin-bottom: 1rem;
+    @include tablet {
+        width: 45%;
+        flex-grow: 1;
+    }
+    @include desktop {
+        width: 30%;
+    }
+    &__number {
+        font-family: 'Righteous', cursive;
+        font-size: 1.5rem;
+        color: silver;
+        margin-top: -0.2rem;
+    }
+    &__rating {
+        display: flex;
+        margin: 0.5rem 0 1rem 0;
+    }
+    &__col {
+        display: flex;
+        gap: 0.7rem;
+    }
+    &__name {
+        color: darkslategrey;
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+    &__learn-more {
+        font-size: 0.7rem;
+        color:dimgray;
+        border:none;
+        padding: 0.3rem 0.5rem;
+        &:hover {
+            background-color: darkorange;
+            color: black;
+            transition: all 0.4s;
+        }
+    }
+}

@@ -147,3 +147,12 @@
         margin: 2rem 0;
     }
 }
+.attractions-section {
+    margin: 1.5rem 0;
+    @include tablet {
+        margin: 2rem 0;
+    }
+    @include desktop {
+        margin: 2.5rem 0;
+    }
+}

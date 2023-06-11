@@ -21,7 +21,6 @@ const SingleComment = ({singleComment}) => {
         for (let i = 0; i < singleComment.rating ; i++) {
             stars.push(<img className="singleComment__star" key={i} src={star} alt="star"/>)
         }
-        console.log(stars);
         return stars;
     }
     return (
