@@ -14,11 +14,18 @@ const AttractionsList = ({list}) => {
     }
     // state
     const [activeAttraction, setActiveAttraction] = useState();
-    const [detail, setDetail] = useState();
+    const [detail, setDetail] = useState({});
     const handleClick = (id) => {
+        if (id == activeAttraction) {
+            setActiveAttraction(null);
+            setDetail({});
+            return;
+        }
         setActiveAttraction(id);
         axios.get(getAttractions.getAttractionsDetail(id))
-            .then((response) => console.log(response.data))
+            .then((response) => {
+                setDetail(response.data);
+            })
             .catch((error) => console.log(error))
     }
     return (
@@ -42,10 +49,23 @@ const AttractionsList = ({list}) => {
                                 </div>
                             </div>
                             <button className="attraction__learn-more">
-                                + 
+                                {
+                                    properties?.xid == activeAttraction ? "-" : "+"
+                                } 
                             </button>
                         </div>
                         {/* Attraction Detail */}
+                        {
+                            properties?.xid == activeAttraction && detail?.xid && (
+                                <div className="attraction__detail">
+                                    <img src={detail.preview.source} className="attraction__image" alt={detail.name}/>
+                                    <p>Address: {detail.address.city}, {detail.address.city_district}, {detail.address.country}, {detail.address.state}, {detail.address.postcode}, {detail.address.state}</p>
+                                    {detail?.url ? (<a href={detail.url} target="__blank" className="attraction__link">Visit website</a>) : (
+                                        <a href={detail.wikipedia} target="__blank" className="attraction__link">Wikipedia</a>
+                                    )}
+                                </div>
+                            )
+                        }
                     </article>
                     ))
                 })
