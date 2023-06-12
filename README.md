@@ -22,6 +22,7 @@ Welcome to Explore+City., a captivating full-stack application that revolutioniz
   - React (include any specific libraries or frameworks if applicable)
 
 - Back-end:
+  Link to Github Repository for Backend: https://github.com/pichsophaneatdy/Explore_City_BackEnd
   - Node.js
   - Express.js
   - MongoDB (include any other databases or data storage solutions if applicable)
