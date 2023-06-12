@@ -122,7 +122,6 @@ const CityPage = () => {
         axios.get(attractionAPI.getAttractionsList(lat, lng))
             .then((response) => {
                 setAttractions(response.data.features);
-                console.log(response.data.features)
             })
             .catch((error) => console.log(error));
     }, [])
