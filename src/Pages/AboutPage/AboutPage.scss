@@ -1,0 +1,110 @@
+@use "../../styles/_mixins" as *;
+
+.aboutPage {
+    padding: 0 1rem;
+    @include tablet{
+        padding: 0 2rem;
+    }
+    @include desktop {
+        padding: 0 8rem;
+    }
+    // hero section
+    &__hero {
+        padding-top: 2rem;
+        position: relative;
+        @include tablet {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        @include desktop{
+            justify-content: space-evenly
+            ;
+        }
+    }
+    &__img {
+        display: none;
+        @include tablet {
+            display: block;
+            width: 600px;
+            position: sticky;
+            top:0;
+        }
+    }
+    &__title {
+        font-size: 1.7rem;
+        line-height: 3rem;
+        font-family: 'Roboto', sans-serif;
+        padding-bottom: 2rem;
+        @include tablet {
+            font-size: 2.5rem;
+            line-height: 3.8rem;
+        }
+    }
+    &__hero-img{
+        height: 400px;
+        object-fit: cover;
+        border-radius: 0.3rem;        
+    }
+    &__content {
+        margin: 1.5rem 0;
+        @include tablet {
+            width: 50%;
+            margin: -3rem 0 5rem 0;
+        }
+        @include desktop{
+            margin: 3rem auto 6rem auto;
+            width: 70%;
+        }
+    }
+    &__name {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+        @include tablet {
+            font-size: 1.5rem;
+        }
+    }
+    &__position {
+        color: gray;
+        font-size: 0.8rem;
+        font-weight: 500;
+        @include tablet {
+            font-size: 1rem;
+        }
+    }
+    &__skills {
+        color:blue;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin: 1rem 0;
+        line-height: 1.5rem;
+        @include tablet {
+            font-size: 0.9rem;
+            margin: 2rem 0;
+        }
+    }
+    &__about {
+        color:darkslategrey;
+        font-weight: 500;
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+    }
+    &__hobby {
+        font-size: 0.9rem;
+        color: darkslategrey;
+        font-weight: 500;
+        margin-top: 1.5rem;;
+
+    }
+    &__connect {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 3rem;
+    }
+    &__icon {
+        width: 25px;
+        cursor: pointer;
+    }
+}

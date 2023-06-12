@@ -80,7 +80,7 @@
     }
 }
 
-.item1, .item2, .item3, .item4 {
+.item1, .item2, .item3, .item4, .item5, .item6 {
     background-size: cover;
     padding: 7rem 1rem 1rem 1rem;
     border-radius: 0.3rem;
@@ -91,7 +91,7 @@
         margin-bottom: none;
     }
     @include desktop{
-        width: 20%;
+        width: 27%;
     }
 }
 .item__title {
@@ -110,6 +110,13 @@
 }
 .item4 {
     background-image: url("../../assets/images/airquality.jpg");
+}
+.item5 {
+    background-image: url("../../assets/images/attractions.jpg");
+}
+.item6 {
+    background-image: url("../../assets/images/comment.jpg");
+    background-position: center;
 }
 // About
 .about {

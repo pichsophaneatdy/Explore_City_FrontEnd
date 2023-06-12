@@ -64,6 +64,12 @@ const HomePage = () => {
                     <div className="item4">
                         <p className="item__title">Air Quality</p>
                     </div>
+                    <div className="item5">
+                        <p className="item__title">Top Attractions</p>
+                    </div>
+                    <div className="item6">
+                        <p className="item__title">What Other People Say About the City</p>
+                    </div>
                 </div>
             </div>
             {/* About Section */}

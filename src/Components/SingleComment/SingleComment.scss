@@ -46,4 +46,8 @@
         width: 10px;
         margin-right: 0.1rem;
     }
+    &__content {
+        width: 100%;
+        max-width: 400px;
+    }
 }
